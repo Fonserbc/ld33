@@ -9,9 +9,13 @@ public class PlayerMesh : MonoBehaviour {
 	const float MIN_ATRACTION = 0.2f;
 
 	public Sprite sprite;
+	public Transform eyesTransform;
+	Vector3 eyeStartPos;
 
 	public MeshFilter meshFilter;
 	public MeshRenderer meshRenderer;
+
+	public Animator anim;
 
 	// Mesh
 	int vertexCount = 0;
@@ -26,9 +30,9 @@ public class PlayerMesh : MonoBehaviour {
 	Mesh spriteMesh;
 
 	// Collider
-	ContactPoint2D[] contacts = new ContactPoint2D[MAX_CONTACTS];
+	ContactPoint2D[] contacts;
+	SpringJoint2D[] joints;
 	int contactsCount = 0;
-	float[] verticesStickyness;
 	float lerpingTime = 0f;
 	int lastContactsCount = 0;
 
@@ -36,6 +40,7 @@ public class PlayerMesh : MonoBehaviour {
 	void Start () {
 		InitMesh();
 		InitStickyness();
+		eyeStartPos = eyesTransform.localPosition;
 	}
 
 	void InitMesh() {
@@ -72,7 +77,7 @@ public class PlayerMesh : MonoBehaviour {
 				texCoords[index] = uv;
 			}
 		}
-
+		
 		triangleCount = 0;
 		for(int i = 0; i < vertexCountX - 1; i++) {
 			for(int j = 0; j < vertexCountY - 1; j++) {
@@ -122,7 +127,15 @@ public class PlayerMesh : MonoBehaviour {
 	}
 
 	void InitStickyness() {
-		verticesStickyness = new float[vertexCount];
+		contacts = new ContactPoint2D[MAX_CONTACTS];
+
+		joints = new SpringJoint2D[MAX_CONTACTS];
+		for (int i = 0; i < MAX_CONTACTS; ++i) {
+			joints[i] = gameObject.AddComponent<SpringJoint2D>();
+			joints[i].enabled = false;
+			joints[i].enableCollision = true;
+			joints[i].distance = 0f;
+		}
 	}
 
 	void GetMinMaxTextureRect(out Vector2 min, out Vector2 max)
@@ -145,10 +158,39 @@ public class PlayerMesh : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	void FixedUpdate() {
+		Vector2 aux = Vector2.zero;
+		for (int i = 0; i < MAX_CONTACTS; ++i) {
+			if (i < contactsCount) {
+				if (contacts[i].collider.attachedRigidbody != null && contacts[i].collider.gameObject.layer != 8) {
+					joints[i].connectedBody = contacts[i].collider.attachedRigidbody;
+					joints[i].anchor = Vector2.zero;
+
+					RotatePointAroundOrigin(contacts[i].point - contacts[i].normal - joints[i].connectedBody.position, -joints[i].connectedBody.rotation, out aux);
+					joints[i].connectedAnchor = aux;
+					joints[i].enabled = true;
+					lerpingTime = 0f;
+				}
+				else if (contacts[i].collider.attachedRigidbody == null) {
+					joints[i].anchor = Vector2.zero;
+					joints[i].connectedAnchor = contacts[i].point - contacts[i].normal;
+					joints[i].enabled = true;
+					joints[i].connectedBody = null;
+				}
+				else {
+					joints[i].enabled = false;
+					joints[i].connectedBody = null;
+				}
+			}
+			else {
+				joints[i].enabled = false;
+				joints[i].connectedBody = null;
+			}
+		}
+
 		if (lastContactsCount != contactsCount) {
 			lastContactsCount = contactsCount;
 			lerpingTime = 0f;
@@ -194,6 +236,28 @@ public class PlayerMesh : MonoBehaviour {
 				
 				vertices[i] = Vector3.Lerp(vertices[i], verticesStartPos[i] + totalOffset, Easing.Cubic.Out(lerpingTime/LERP_TIME));
 			}
+
+			totalOffset = Vector3.zero;
+			for(int k = 0; k < contactsCount; k++)
+			{
+				worldPos = eyesTransform.position;
+				deltaPos = worldPos - (Vector3)contacts[k].point;
+				angle = Vector2.Angle(contacts[k].normal, deltaPos);
+				tan = Mathf.Tan(angle*Mathf.Deg2Rad);
+				
+				distanceToPlane = Mathf.Sqrt(deltaPos.sqrMagnitude/(1f + tan*tan));
+				if (angle < 90f) {
+					distanceToPlane = -distanceToPlane;
+				}
+				
+				distanceFactor = 1f - Mathf.Min(1f, Mathf.Abs(distanceToPlane)/sprite.bounds.size.x);
+				
+				distanceFactor = MIN_ATRACTION + (1f - MIN_ATRACTION)*distanceFactor;
+				
+				totalOffset += distanceFactor*distanceToPlane*(Vector3)contacts[k].normal;
+			}
+			if (contactsCount > 0) totalOffset /= (float)contactsCount;
+			eyesTransform.localPosition = Vector3.Lerp(eyesTransform.localPosition, eyeStartPos + totalOffset, Easing.Cubic.Out(lerpingTime/LERP_TIME));
 			
 			// Update the mesh
 			spriteMesh.vertices = vertices;
@@ -211,51 +275,31 @@ public class PlayerMesh : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
+		anim.SetTrigger("contact");
 	}
 
 	void OnCollisionExit2D(Collision2D col) {
 	}
 
+	void RotatePointAroundOrigin(Vector2 point, float angle, out Vector2 result) {
+		float sin = Mathf.Sin(Mathf.Deg2Rad*angle);
+		float cos = Mathf.Cos(Mathf.Deg2Rad*angle);
+
+		result.x = cos * point.x - sin * point.y;
+		result.y = sin * point.x + cos * point.y;
+	}
+
 	void OnDrawGizmos() {
 		Gizmos.color = Color.white;
 
-		//Gizmos.DrawSphere(transform.position + sprite.bounds.center, sprite.bounds.extents.x);
-		
-		Color wantedColor;
-		if (verticesStartPos != null && verticesStartPos.Length > 0 && false) {
-			for (int k = 0; k < contactsCount; ++k) {
-				Gizmos.color = Color.white;
+		if (!Application.isPlaying) Gizmos.DrawSphere(transform.position + sprite.bounds.center, sprite.bounds.extents.x);
+		else {
+			Gizmos.color = Color.cyan;
+			for(int k = 0; k < contactsCount; k++)
+			{
 				Gizmos.DrawWireSphere(contacts[k].point, 0.07f);
+				Gizmos.DrawLine(contacts[k].point, contacts[k].point + contacts[k].normal);
 			}
-
-			for (int i = 0; i < vertexCount; ++i) {
-				//Gizmos.color = Color.blue;
-				//Gizmos.DrawWireSphere(verticesStartPos[i] + transform.position, 0.07f);
-				
-				
-				for (int k = 0; k < contactsCount; ++k) {
-					Vector3 deltaPos = transform.position + verticesStartPos[i] - (Vector3)contacts[k].point;
-					float angle = Vector2.Angle(contacts[k].normal, deltaPos);
-					float tan = Mathf.Tan(angle*Mathf.Deg2Rad);
-					
-					float distanceToPlane = float.IsNaN(tan)? 0f : Mathf.Sqrt(deltaPos.sqrMagnitude/(1f + tan*tan));
-					
-					wantedColor = Color.red;
-					if (angle < 90f) {
-						distanceToPlane = -distanceToPlane;
-						wantedColor = Color.green;
-					}
-
-					float distanceFactor = 1f - Mathf.Min(1f, Mathf.Abs(distanceToPlane)/sprite.bounds.size.x);
-
-					wantedColor *= distanceFactor;
-					//Debug.Log("Angle "+angle+ ", Tan " +tan+", distanceToPlane "+distanceToPlane);
-
-					Gizmos.color = wantedColor;
-					Gizmos.DrawLine(verticesStartPos[i] + transform.position + new Vector3(i*0.001f, 0, 0), verticesStartPos[i] + transform.position + new Vector3(i*0.001f, 0, 0) + ((Vector3)contacts[k].normal)*distanceToPlane);
-				}
-			}
-
 		}
 	}
 }

@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: a3d45cc08335dcd45951d2487634288e
+timeCreated: 1440265094
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Stickyme-01_0
+    21300002: Stickyme-01_1
+    21300004: Stickyme-01_2
+    21300006: eyes_normal_left
+    21300008: eyes_normal_right
+    21300010: eyes_closed_left
+    21300012: eyes_closed_right
+    21300014: eyes_bored_open
+    21300016: eyes_bored_closed
+    21300018: eyes_crazy_right
+    21300020: eyes_crazy_left
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 256
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Stickyme-01_0
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 283
+        width: 234
+        height: 214
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stickyme-01_1
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 19
+        width: 231
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Stickyme-01_2
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 24
+        width: 220
+        height: 217
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_normal_left
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 411
+        width: 39
+        height: 33
+      alignment: 9
+      pivot: {x: .805241525, y: .334302485}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_normal_right
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 360
+        width: 39
+        height: 33
+      alignment: 9
+      pivot: {x: .19475849, y: .343023121}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_closed_left
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 414
+        width: 34
+        height: 20
+      alignment: 9
+      pivot: {x: .822247207, y: .240988165}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_closed_right
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 361
+        width: 34
+        height: 19
+      alignment: 9
+      pivot: {x: .160823599, y: .212209597}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_bored_open
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 465
+        width: 37
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_bored_closed
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 465
+        width: 37
+        height: 14
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_crazy_right
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 318
+        width: 56
+        height: 25
+      alignment: 9
+      pivot: {x: .299999982, y: .430930167}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: eyes_crazy_left
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 316
+        width: 52
+        height: 27
+      alignment: 9
+      pivot: {x: .709999979, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: Player
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
