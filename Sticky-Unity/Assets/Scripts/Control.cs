@@ -8,7 +8,7 @@ public class Control : MonoBehaviour {
 
 	public enum Kind {
 		Red,
-		Green
+		Blue
 	};
 
 	public static int GetState(Kind k) {
@@ -23,20 +23,20 @@ public class Control : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.I)) {
+		if (Input.GetKey(KeyCode.W)) {
 			stateX = 1;
 		}
-		else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.K)) {
+		else if (Input.GetKey(KeyCode.S)) {
 			stateX = -1;
 		}
 		else {
 			stateX = 0;
 		}
 
-		if (Input.GetKey(KeyCode.UpArrow)) {
+		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.I)) {
 			stateO = 1;
 		}
-		else if (Input.GetKey(KeyCode.DownArrow)) {
+		else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.K)) {
 			stateO = -1;
 		}
 		else {

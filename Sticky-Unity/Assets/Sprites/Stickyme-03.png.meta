@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 337bf1baa4c5cba4b8987cbfbd16c79c
-timeCreated: 1440346534
+timeCreated: 1440362332
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -29,6 +29,8 @@ TextureImporter:
     21300044: stick_red_5
     21300046: stick_red_3
     21300048: stick_green_3
+    21300050: wheel_arm
+    21300052: wheel
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -323,6 +325,26 @@ TextureImporter:
         height: 892
       alignment: 9
       pivot: {x: .5, y: .133000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wheel_arm
+      rect:
+        serializedVersion: 2
+        x: 4095
+        y: 228
+        width: 232
+        height: 889
+      alignment: 9
+      pivot: {x: .5, y: .129999995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wheel
+      rect:
+        serializedVersion: 2
+        x: 4478
+        y: 215
+        width: 563
+        height: 566
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: world
   userData: 
