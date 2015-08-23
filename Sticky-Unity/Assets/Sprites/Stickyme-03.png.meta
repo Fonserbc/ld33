@@ -1,0 +1,242 @@
+fileFormatVersion: 2
+guid: 337bf1baa4c5cba4b8987cbfbd16c79c
+timeCreated: 1440335968
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: wall_5x5
+    21300002: wall_3x3
+    21300004: wall_diagonal_3
+    21300006: wall_diagonal_5
+    21300008: wall_1x1
+    21300010: wall_diagonal_1
+    21300012: exit_entrance
+    21300014: buttons_red
+    21300016: buttons_green
+    21300018: stick_red_4
+    21300020: stick_green_4
+    21300022: ice_5x5
+    21300024: ice_3x3
+    21300026: ice_diagonal_3
+    21300028: ice_1x1
+    21300030: ice_diagonal_1
+    21300032: ice_diagonal_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 256
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: wall_5x5
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 2709
+        width: 1301
+        height: 1201
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wall_3x3
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 3967
+        width: 787
+        height: 739
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wall_diagonal_3
+      rect:
+        serializedVersion: 2
+        x: 1915
+        y: 3970
+        width: 796
+        height: 736
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wall_diagonal_5
+      rect:
+        serializedVersion: 2
+        x: 2481
+        y: 2709
+        width: 1299
+        height: 1198
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wall_1x1
+      rect:
+        serializedVersion: 2
+        x: 3767
+        y: 2239
+        width: 268
+        height: 262
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wall_diagonal_1
+      rect:
+        serializedVersion: 2
+        x: 4119
+        y: 2239
+        width: 271
+        height: 262
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: exit_entrance
+      rect:
+        serializedVersion: 2
+        x: 4308
+        y: 4112
+        width: 689
+        height: 506
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buttons_red
+      rect:
+        serializedVersion: 2
+        x: 3359
+        y: 4003
+        width: 211
+        height: 432
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: buttons_green
+      rect:
+        serializedVersion: 2
+        x: 3589
+        y: 4003
+        width: 210
+        height: 432
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stick_red_4
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 3067
+        width: 257
+        height: 1144
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: stick_green_4
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1019
+        width: 260
+        height: 1146
+      alignment: 9
+      pivot: {x: .5, y: .100000001}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ice_5x5
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 510
+        width: 1305
+        height: 1214
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ice_3x3
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 1779
+        width: 787
+        height: 741
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ice_diagonal_3
+      rect:
+        serializedVersion: 2
+        x: 1921
+        y: 1785
+        width: 771
+        height: 752
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ice_1x1
+      rect:
+        serializedVersion: 2
+        x: 4515
+        y: 2225
+        width: 264
+        height: 245
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ice_diagonal_1
+      rect:
+        serializedVersion: 2
+        x: 2774
+        y: 2219
+        width: 268
+        height: 268
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ice_diagonal_5
+      rect:
+        serializedVersion: 2
+        x: 2487
+        y: 477
+        width: 1296
+        height: 1294
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: world
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
