@@ -2,16 +2,16 @@
 # =============== #
 # Unity generated #
 # =============== #
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
+Sticky-Unity/[Ll]ibrary/
+Sticky-Unity/[Tt]emp/
+Sticky-Unity/[Oo]bj/
+Sticky-Unity/[Bb]uild/
+Sticky-Unity/[Bb]uilds/
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-ExportedObj/
+Sticky-Unity/ExportedObj/
 *.svd
 *.userprefs
 *.csproj
@@ -23,7 +23,7 @@ ExportedObj/
 *.booproj
 
 #Unity3D Generated File On Crash Reports
-sysinfo.txt
+Sticky-Unity/sysinfo.txt
  
 # ============ #
 # OS generated #

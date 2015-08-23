@@ -7,12 +7,12 @@ public class Control : MonoBehaviour {
 	public static int stateO = 0;
 
 	public enum Kind {
-		X,
-		O
+		Red,
+		Green
 	};
 
 	public static int GetState(Kind k) {
-		return k == Kind.X? stateX : stateO;
+		return k == Kind.Red? stateX : stateO;
 	}
 
 	// Use this for initialization

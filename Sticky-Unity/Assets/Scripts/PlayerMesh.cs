@@ -5,8 +5,9 @@ public class PlayerMesh : MonoBehaviour {
 
 	const float VERTEX_DISTANCE = 0.1f;
 	const int MAX_CONTACTS = 4;
-	const float LERP_TIME = 0.7f;
+	const float LERP_TIME = 0.3f;
 	const float MIN_ATRACTION = 0.2f;
+	const float STICK_INTENSITY = 0f;
 
 	public Sprite sprite;
 	public Transform eyesTransform;
@@ -135,6 +136,8 @@ public class PlayerMesh : MonoBehaviour {
 			joints[i].enabled = false;
 			joints[i].enableCollision = true;
 			joints[i].distance = 0f;
+			joints[i].dampingRatio = 2f;
+			joints[i].frequency = 6f;
 		}
 	}
 
@@ -166,17 +169,19 @@ public class PlayerMesh : MonoBehaviour {
 		for (int i = 0; i < MAX_CONTACTS; ++i) {
 			if (i < contactsCount) {
 				if (contacts[i].collider.attachedRigidbody != null && contacts[i].collider.gameObject.layer != 8) {
-					joints[i].connectedBody = contacts[i].collider.attachedRigidbody;
-					joints[i].anchor = Vector2.zero;
+					//if (joints[i].connectedBody == null) {
+						joints[i].connectedBody = contacts[i].collider.attachedRigidbody;
+						joints[i].anchor = Vector2.zero;
 
-					RotatePointAroundOrigin(contacts[i].point - contacts[i].normal - joints[i].connectedBody.position, -joints[i].connectedBody.rotation, out aux);
-					joints[i].connectedAnchor = aux;
-					joints[i].enabled = true;
+						RotatePointAroundOrigin(contacts[i].point - contacts[i].normal*STICK_INTENSITY - joints[i].connectedBody.position, -joints[i].connectedBody.rotation, out aux);
+						joints[i].connectedAnchor = aux;
+						joints[i].enabled = true;
+					//}
 					lerpingTime = 0f;
 				}
 				else if (contacts[i].collider.attachedRigidbody == null) {
 					joints[i].anchor = Vector2.zero;
-					joints[i].connectedAnchor = contacts[i].point - contacts[i].normal;
+					joints[i].connectedAnchor = contacts[i].point - contacts[i].normal*STICK_INTENSITY;
 					joints[i].enabled = true;
 					joints[i].connectedBody = null;
 				}
@@ -232,7 +237,7 @@ public class PlayerMesh : MonoBehaviour {
 
 					totalOffset += distanceFactor*distanceToPlane*(Vector3)contacts[k].normal;
 				}
-				if (contactsCount > 0) totalOffset /= (float)contactsCount;
+				if (contactsCount > 1) totalOffset /= ((float)contactsCount);
 				
 				vertices[i] = Vector3.Lerp(vertices[i], verticesStartPos[i] + totalOffset, Easing.Cubic.Out(lerpingTime/LERP_TIME));
 			}
@@ -279,6 +284,9 @@ public class PlayerMesh : MonoBehaviour {
 	}
 
 	void OnCollisionExit2D(Collision2D col) {
+		for (int i = 0; i < col.contacts.Length && contactsCount < MAX_CONTACTS; ++i) {
+			contacts[contactsCount++] = col.contacts[i];
+		}
 	}
 
 	void RotatePointAroundOrigin(Vector2 point, float angle, out Vector2 result) {
