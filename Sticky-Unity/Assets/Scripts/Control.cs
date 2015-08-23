@@ -33,10 +33,10 @@ public class Control : MonoBehaviour {
 			stateX = 0;
 		}
 
-		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.I)) {
+		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey(KeyCode.I) || Input.GetKeyDown(KeyCode.I)) {
 			stateO = 1;
 		}
-		else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.K)) {
+		else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.DownArrow)|| Input.GetKey(KeyCode.K) || Input.GetKeyDown(KeyCode.K)) {
 			stateO = -1;
 		}
 		else {
