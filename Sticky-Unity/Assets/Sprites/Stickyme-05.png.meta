@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: a82a1405a83a0ce4bb60e7a3964478a8
+timeCreated: 1440364914
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: step
+    21300002: exclamation
+    21300004: mom_back
+    21300006: sticky_walking
+    21300008: pipe_front
+    21300010: pipe_back
+    21300012: mom_face
+    21300014: hole
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: step
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1427
+        width: 2636
+        height: 773
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: exclamation
+      rect:
+        serializedVersion: 2
+        x: 3082
+        y: 1336
+        width: 298
+        height: 415
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mom_back
+      rect:
+        serializedVersion: 2
+        x: 2277
+        y: 35
+        width: 1123
+        height: 1168
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: sticky_walking
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 503
+        width: 574
+        height: 563
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pipe_front
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1093
+        width: 839
+        height: 243
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: pipe_back
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 1266
+        width: 812
+        height: 157
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: mom_face
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 9
+        width: 460
+        height: 419
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hole
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 0
+        width: 1075
+        height: 1076
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: title
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
