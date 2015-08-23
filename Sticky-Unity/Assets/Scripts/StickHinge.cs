@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[ExecuteInEditMode]
 public class StickHinge : MonoBehaviour {
 	
 	public Control.Kind type;
@@ -30,9 +29,6 @@ public class StickHinge : MonoBehaviour {
 		motor = joint.motor;
 	}
 
-	void Update() {
-	}
-	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (Control.GetState(type) == (invert? -1 : 1)) {
@@ -59,7 +55,7 @@ public class StickHinge : MonoBehaviour {
 	}
 
 	void OnDrawGizmos() {
-		float length = GetComponent<BoxCollider2D>().size.x - 0.5f;
+		float length = GetComponent<BoxCollider2D>().size.x;
 		
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireSphere(transform.position, length);

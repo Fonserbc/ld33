@@ -42,5 +42,9 @@ public class Control : MonoBehaviour {
 		else {
 			stateO = 0;
 		}
+
+		if (Input.GetKeyDown(KeyCode.R)) {
+			Application.LoadLevel(Application.loadedLevel);
+		}
 	}
 }

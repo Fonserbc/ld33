@@ -8,6 +8,7 @@ public class PlayerMesh : MonoBehaviour {
 	const float LERP_TIME = 0.3f;
 	const float MIN_ATRACTION = 0.2f;
 	const float STICK_INTENSITY = 0f;
+	const float DISCARD_FACTOR = 0.9f;
 
 	public Sprite sprite;
 	public Transform eyesTransform;
@@ -17,6 +18,7 @@ public class PlayerMesh : MonoBehaviour {
 	public MeshRenderer meshRenderer;
 
 	public Animator anim;
+	public Animator eyesAnim;
 
 	// Mesh
 	int vertexCount = 0;
@@ -158,11 +160,6 @@ public class PlayerMesh : MonoBehaviour {
 			texCoords[i] = min + offset;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-
-	}
 
 	void FixedUpdate() {
 		Vector2 aux = Vector2.zero;
@@ -177,9 +174,9 @@ public class PlayerMesh : MonoBehaviour {
 						joints[i].connectedAnchor = aux;
 						joints[i].enabled = true;
 					//}
-					lerpingTime = 0f;
+					lerpingTime = Mathf.Min(lerpingTime, LERP_TIME - Time.deltaTime*2f);
 				}
-				else if (contacts[i].collider.attachedRigidbody == null) {
+				else if (contacts[i].collider.attachedRigidbody == null && contacts[i].collider.gameObject.layer != 8) {
 					joints[i].anchor = Vector2.zero;
 					joints[i].connectedAnchor = contacts[i].point - contacts[i].normal*STICK_INTENSITY;
 					joints[i].enabled = true;
@@ -216,12 +213,16 @@ public class PlayerMesh : MonoBehaviour {
 			
 			float distanceToPlane = 0f;
 			float distanceFactor = 0f;
-			for(int i = 0; i < vertexCount; i++)
+			float maxDistanceFactor;
+
+			for(int i = 0; i <= vertexCount; i++)
 			{
 				totalOffset = Vector3.zero;
+				worldPos = i == vertexCount? eyesTransform.position : (transform.position + verticesStartPos[i]);
+				maxDistanceFactor = 0f;
+
 				for(int k = 0; k < contactsCount; k++)
 				{
-					worldPos = transform.position + verticesStartPos[i];
 					deltaPos = worldPos - (Vector3)contacts[k].point;
 					angle = Vector2.Angle(contacts[k].normal, deltaPos);
 					tan = Mathf.Tan(angle*Mathf.Deg2Rad);
@@ -230,39 +231,24 @@ public class PlayerMesh : MonoBehaviour {
 					if (angle < 90f) {
 						distanceToPlane = -distanceToPlane;
 					}
-
+					
 					distanceFactor = 1f - Mathf.Min(1f, Mathf.Abs(distanceToPlane)/sprite.bounds.size.x);
-
+					
 					distanceFactor = MIN_ATRACTION + (1f - MIN_ATRACTION)*distanceFactor;
 
-					totalOffset += distanceFactor*distanceToPlane*(Vector3)contacts[k].normal;
+					if (distanceFactor > maxDistanceFactor) {
+						totalOffset = totalOffset * (1f - distanceFactor) + distanceFactor*distanceToPlane*(Vector3)contacts[k].normal;
+						maxDistanceFactor = distanceFactor;
+					}
 				}
-				if (contactsCount > 1) totalOffset /= ((float)contactsCount);
-				
-				vertices[i] = Vector3.Lerp(vertices[i], verticesStartPos[i] + totalOffset, Easing.Cubic.Out(lerpingTime/LERP_TIME));
-			}
 
-			totalOffset = Vector3.zero;
-			for(int k = 0; k < contactsCount; k++)
-			{
-				worldPos = eyesTransform.position;
-				deltaPos = worldPos - (Vector3)contacts[k].point;
-				angle = Vector2.Angle(contacts[k].normal, deltaPos);
-				tan = Mathf.Tan(angle*Mathf.Deg2Rad);
-				
-				distanceToPlane = Mathf.Sqrt(deltaPos.sqrMagnitude/(1f + tan*tan));
-				if (angle < 90f) {
-					distanceToPlane = -distanceToPlane;
+				if (i == vertexCount) {// Update eyes position
+					eyesTransform.localPosition = Vector3.Lerp(eyesTransform.localPosition, eyeStartPos + totalOffset, Easing.Cubic.Out(lerpingTime/LERP_TIME));
 				}
-				
-				distanceFactor = 1f - Mathf.Min(1f, Mathf.Abs(distanceToPlane)/sprite.bounds.size.x);
-				
-				distanceFactor = MIN_ATRACTION + (1f - MIN_ATRACTION)*distanceFactor;
-				
-				totalOffset += distanceFactor*distanceToPlane*(Vector3)contacts[k].normal;
+				else {
+					vertices[i] = Vector3.Lerp(vertices[i], verticesStartPos[i] + totalOffset, Easing.Cubic.Out(lerpingTime/LERP_TIME));
+				}
 			}
-			if (contactsCount > 0) totalOffset /= (float)contactsCount;
-			eyesTransform.localPosition = Vector3.Lerp(eyesTransform.localPosition, eyeStartPos + totalOffset, Easing.Cubic.Out(lerpingTime/LERP_TIME));
 			
 			// Update the mesh
 			spriteMesh.vertices = vertices;
@@ -281,12 +267,10 @@ public class PlayerMesh : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		anim.SetTrigger("contact");
+		eyesAnim.SetTrigger("contact");
 	}
 
 	void OnCollisionExit2D(Collision2D col) {
-		for (int i = 0; i < col.contacts.Length && contactsCount < MAX_CONTACTS; ++i) {
-			contacts[contactsCount++] = col.contacts[i];
-		}
 	}
 
 	void RotatePointAroundOrigin(Vector2 point, float angle, out Vector2 result) {
