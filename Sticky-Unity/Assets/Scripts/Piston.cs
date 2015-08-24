@@ -4,7 +4,7 @@ using System.Collections;
 public class Piston : MonoBehaviour {
 
 	public SliderJoint2D joint;
-	public float degreesPerSecond = 40f;
+	const float degreesPerSecond = 100f;
 	public bool invert = false;
 	public Control.Kind type;
 

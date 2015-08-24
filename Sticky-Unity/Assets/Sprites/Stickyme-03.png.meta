@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 337bf1baa4c5cba4b8987cbfbd16c79c
-timeCreated: 1440362332
+timeCreated: 1440410659
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -99,8 +99,8 @@ TextureImporter:
     - name: wall_diagonal_3
       rect:
         serializedVersion: 2
-        x: 1917
-        y: 3973
+        x: 1918
+        y: 3974
         width: 768
         height: 768
       alignment: 6
@@ -109,8 +109,8 @@ TextureImporter:
     - name: wall_diagonal_5
       rect:
         serializedVersion: 2
-        x: 2481
-        y: 2626
+        x: 2486
+        y: 2631
         width: 1280
         height: 1280
       alignment: 6
@@ -210,7 +210,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1922
-        y: 1765
+        y: 1770
         width: 768
         height: 768
       alignment: 6
@@ -239,8 +239,8 @@ TextureImporter:
     - name: ice_diagonal_5
       rect:
         serializedVersion: 2
-        x: 2493
-        y: 412
+        x: 2497
+        y: 415
         width: 1280
         height: 1280
       alignment: 6

@@ -5,7 +5,7 @@ public class StickHinge : MonoBehaviour {
 	
 	public Control.Kind type;
 	
-	public float degreesPerSecond = 40f;
+	const float degreesPerSecond = 70f;
 	
 	public Rigidbody2D rb;
 	
