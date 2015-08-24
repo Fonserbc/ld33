@@ -40,6 +40,8 @@ public class PlayerMesh : MonoBehaviour {
 	float lerpingTime = 0f;
 	int lastContactsCount = 0;
 
+	float soundTime = 0f;
+
 	// Use this for initialization
 	void Start () {
 		InitMesh();
@@ -273,6 +275,11 @@ public class PlayerMesh : MonoBehaviour {
 		eyesAnim.SetTrigger("contact");
 
 		newContacts = true;
+
+		if (Time.time - soundTime > 0.3f) {
+			Music.instance.PlaySound(Music.SoundType.Stick);
+			soundTime = Time.time;
+		}
 	}
 
 	void OnCollisionExit2D(Collision2D col) {

@@ -7,7 +7,7 @@ public class Music : MonoBehaviour {
 
 	[System.Serializable]
 	public struct SoundHolder {
-		public AudioClip clip;
+		public AudioClip[] clips;
 		public float volume;
 	}
 	public SoundHolder[] sounds;
@@ -15,6 +15,8 @@ public class Music : MonoBehaviour {
 	public AudioSource source;
 
 	public enum SoundType {
+		Pop,
+		Stick,
 		Length
 	};
 
@@ -31,6 +33,6 @@ public class Music : MonoBehaviour {
 
 	public void PlaySound(SoundType which) {
 		SoundHolder sound = sounds[(int)which];
-		source.PlayOneShot(sound.clip, sound.volume > 0f? sound.volume : 1f);
+		source.PlayOneShot(sound.clips[Random.Range(0, sound.clips.Length)], sound.volume > 0f? sound.volume : 1f);
 	}
 }
