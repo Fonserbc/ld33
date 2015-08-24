@@ -31,6 +31,7 @@ public class PlayerMesh : MonoBehaviour {
 	int[] triangles;
 
 	Mesh spriteMesh;
+	bool newContacts = false;
 
 	// Collider
 	ContactPoint2D[] contacts;
@@ -193,7 +194,7 @@ public class PlayerMesh : MonoBehaviour {
 			}
 		}
 
-		if (lastContactsCount != contactsCount) {
+		if (lastContactsCount != contactsCount || newContacts) {
 			lastContactsCount = contactsCount;
 			lerpingTime = 0f;
 		}
@@ -257,6 +258,8 @@ public class PlayerMesh : MonoBehaviour {
 		}
 
 		contactsCount = 0;
+		
+		newContacts = false;
 	}
 
 	void OnCollisionStay2D(Collision2D col) {
@@ -268,6 +271,8 @@ public class PlayerMesh : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		anim.SetTrigger("contact");
 		eyesAnim.SetTrigger("contact");
+
+		newContacts = true;
 	}
 
 	void OnCollisionExit2D(Collision2D col) {
