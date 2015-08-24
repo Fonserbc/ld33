@@ -10,22 +10,14 @@ public class StickHinge : MonoBehaviour {
 	public Rigidbody2D rb;
 	
 	public bool invert = false;
-	
-	float startRotation = 0f;
 
 	public HingeJoint2D joint;
-
-	RigidbodyConstraints2D movingConstraints;
-	RigidbodyConstraints2D fixedConstraints;
 
 	JointMotor2D motor;
 
 	// Use this for initialization
 	void Start () {
 		joint.connectedAnchor = transform.position;
-		startRotation = rb.rotation;
-		movingConstraints = fixedConstraints = rb.constraints;
-		fixedConstraints |= RigidbodyConstraints2D.FreezeRotation;
 		motor = joint.motor;
 	}
 

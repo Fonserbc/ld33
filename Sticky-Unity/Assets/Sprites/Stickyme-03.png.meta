@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 337bf1baa4c5cba4b8987cbfbd16c79c
-timeCreated: 1440410659
+timeCreated: 1440424983
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -31,6 +31,7 @@ TextureImporter:
     21300048: stick_green_3
     21300050: wheel_arm
     21300052: wheel
+    21300054: side_tube
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -343,6 +344,16 @@ TextureImporter:
         y: 215
         width: 563
         height: 566
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: side_tube
+      rect:
+        serializedVersion: 2
+        x: 4376
+        y: 4297
+        width: 572
+        height: 256
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -175,7 +175,7 @@ public class PlayerMesh : MonoBehaviour {
 						joints[i].connectedAnchor = aux;
 						joints[i].enabled = true;
 					//}
-					lerpingTime = Mathf.Min(lerpingTime, LERP_TIME - Time.deltaTime*2f);
+					lerpingTime = Mathf.Min(lerpingTime, LERP_TIME - Time.fixedDeltaTime*2f);
 				}
 				else if (contacts[i].collider.attachedRigidbody == null && contacts[i].collider.gameObject.layer != 8) {
 					joints[i].anchor = Vector2.zero;
